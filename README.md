@@ -1,30 +1,18 @@
-<!-- Links -->
-[bmac]: https://www.buymeacoffee.com/adi1090x
-[ko-fi]: https://ko-fi.com/adi1090x
-[paypal]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U3VK2SSVQWAPN
-[patreon]: https://www.patreon.com/adi1090x
-
-**`LAST Updated`** : `August 2023`
-
-> Unmaintained : Due to Termux not working properly on new Android versions and also Termux not getting maintained properly.
-
----
-
-# Termux Style
+# Termux Style++
 
 <p align="left">
-  <img src="https://img.shields.io/badge/Maintained%3F-No-red?style=for-the-badge">
-  <img src="https://img.shields.io/github/license/adi1090x/termux-style?style=for-the-badge">
-  <img src="https://img.shields.io/github/stars/adi1090x/termux-style?style=for-the-badge">
-  <img src="https://img.shields.io/github/forks/adi1090x/termux-style?color=teal&style=for-the-badge">
-  <img src="https://img.shields.io/github/issues/adi1090x/termux-style?color=violet&style=for-the-badge">
+  <img src="https://img.shields.io/badge/Maintained%3F-YES-green?style=for-the-badge">
+  <img src="https://img.shields.io/github/license/indra87g/termux-stylepp?style=for-the-badge">
+  <img src="https://img.shields.io/github/stars/indra87g/termux-stylepp?style=for-the-badge">
+  <img src="https://img.shields.io/github/forks/indra87g/termux-stylepp?color=teal&style=for-the-badge">
+  <img src="https://img.shields.io/github/issues/indra87g/termux-stylepp?color=violet&style=for-the-badge">
 </p>
 
-Simple script to change color-schemes and fonts for [Termux](https://termux.com) terminal emulator.
+A fork of original [termux-style](https://github.com/adi1090x/termux-style)
 
 ![gif](images/main.gif) <br />
 
-> **`termux-style` provides color-schemes and powerline-ready fonts to customize the appearance of the Termux terminal.**
+> **`termux-stylepp` provides more color-schemes and fonts, rather than the original version which is no longer maintained .**
 
 ### How to install
 
@@ -35,12 +23,13 @@ Follow the steps below -
 cd $HOME
 
 # Clone this repository (use `gh repo clone adi1090x/termux-style` if you want to use the GitHub CLI)- 
-git clone https://github.com/adi1090x/termux-style
+git clone https://github.com/indra87/termux-stylepp
 
 # Change to termux-style dir -
-cd termux-style
+cd termux-stylepp
 
 # To install it, run -
+chmod +x install
 ./install
 
 # And follow the steps, it'll be installed on your system.
@@ -51,28 +40,12 @@ cd termux-style
 Run `termux-style` & select the right option -
 
 ```bash
-$ termux-style
-
-    ┌──────────────────────────────────────────────────┐
-    │░▀█▀░█▀▀░█▀▄░█▄█░█░█░█░█░░░░░█▀▀░▀█▀░█░█░█░░░█▀▀░░│
-    │░░█░░█▀▀░█▀▄░█░█░█░█░▄▀▄░▄▄▄░▀▀█░░█░░░█░░█░░░█▀▀░░│
-    │░░▀░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░░░░░▀▀▀░░▀░░░▀░░▀▀▀░▀▀▀░░│
-    └──────────────────────────────────────────────────┘
-    [*] By- Aditya Shakya // adi1090x
-
-    [C] Colors (89)
-    [F] Fonts (20)
-    [R] Random
-    [I] Import
-    [A] About
-    [Q] Quit
-    
-    [Select Option]: 
+termux-style # it will changed to 'txs' soon
 ```
 
 ### Features
 
-+ 90 popular color-schemes.
++ 96 color-schemes.
 + 20 powerline patched fonts.
 + Randomly change color-schemes.
 + Import color-schemes from *local file* or *file URL*.
@@ -96,22 +69,3 @@ $ termux-style
 + To import *local file*, enter the full path (e.g. - `/data/data/com.termux/files/home/spiderman.properties`) of the color-scheme.
 + To import *web file*, enter the file url (e.g. - `https://raw.githubusercontent.com/adi1090x/termux-style/master/colors/gruvbox-dark.properties`) of the color-scheme.
 <br />
-
-### Previews
-
-|Colorschemes|Fonts|
-|--|--|
-|![img](images/colors.gif)|![img](images/fonts.gif)|
-
-|Import - URL|Import - Local|
-|--|--|
-|![img](images/url.gif)|![img](images/local.gif)|
-
-|Install|Uninstall|
-|--|--|
-|![img](images/install.gif)|![img](images/uninstall.png)|
-
-### FYI
-- An `uninstall` script is also added, in case you want to remove this program.
-- Again... If you can improve it, sure...
-- Have fun!
