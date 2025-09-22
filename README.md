@@ -14,6 +14,14 @@ A fork of original [termux-style](https://github.com/adi1090x/termux-style)
 
 > **`termux-stylepp` provides more color-schemes and fonts, rather than the original version which is no longer maintained .**
 
+### Features
+
+- [x] Color scheme picker.
+- [x] Font picker.
+- [x] Random theme.
+- [x] Color scheme importer(from *local file* or *file URL*).
+- [ ] Prompt picker
+
 ### How to install
 
 Follow the steps below - 
@@ -43,14 +51,6 @@ Run `termux-style` & select the right option -
 termux-style # it will changed to 'txs' soon
 ```
 
-### Features
-
-+ 96 color-schemes.
-+ 20 powerline patched fonts.
-+ Randomly change color-schemes.
-+ Import color-schemes from *local file* or *file URL*.
-+ Set colors and fonts in place.
-
 ### Use Import
 ```bash
     [Select Option]: 4
@@ -66,6 +66,6 @@ termux-style # it will changed to 'txs' soon
     [*] Applied Successfully.
 ```
 
-+ To import *local file*, enter the full path (e.g. - `/data/data/com.termux/files/home/spiderman.properties`) of the color-scheme.
++ To import *local file*, enter the full path (e.g. - `/data/data/com.terux/files/home/spiderman.properties`) of the color-scheme.
 + To import *web file*, enter the file url (e.g. - `https://raw.githubusercontent.com/adi1090x/termux-style/master/colors/gruvbox-dark.properties`) of the color-scheme.
 <br />
