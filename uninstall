@@ -2,12 +2,7 @@
 
 ## https://github.com/adi1090x/termux-style
 
-## ANSI Colors (FG & BG)
-RED="$(printf '\033[31m')"  GREEN="$(printf '\033[32m')"  ORANGE="$(printf '\033[33m')"  BLUE="$(printf '\033[34m')"
-MAGENTA="$(printf '\033[35m')"  CYAN="$(printf '\033[36m')"  WHITE="$(printf '\033[37m')" BLACK="$(printf '\033[30m')"
-REDBG="$(printf '\033[41m')"  GREENBG="$(printf '\033[42m')"  ORANGEBG="$(printf '\033[43m')"  BLUEBG="$(printf '\033[44m')"
-MAGENTABG="$(printf '\033[45m')"  CYANBG="$(printf '\033[46m')"  WHITEBG="$(printf '\033[47m')" BLACKBG="$(printf '\033[40m')"
-DEFAULT_FG="$(printf '\033[39m')"  DEFAULT_BG="$(printf '\033[49m')"
+source ./tspp.config
 
 ## Directories
 PREFIX='/data/data/com.termux/files/usr'
@@ -42,23 +37,23 @@ reset_color() {
 }
 
 ## Check for previous installation
-uninstall_tstyle () {
+uninstall_tspp () {
 	banner
-	if [[ (-L $PREFIX/bin/termux-style) && (-d $PREFIX/share/termux-style) ]]; then
+	if [[ (-L $PREFIX/bin/tspp) && (-d $PREFIX/share/tspp) ]]; then
 		{ echo; echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Uninstalling termux-style..."; echo; }
 		{ echo "    ${BLUE}[${RED}*${BLUE}] ${RED}Removing files from $PREFIX/share dir."${BLUE}; }
-		{ rm -r $PREFIX/share/termux-style $PREFIX/bin/termux-style; }
+		{ rm -r $PREFIX/share/tspp $PREFIX/bin/tspp; }
 		# Verify files
-		if [[ (! -L $PREFIX/bin/termux-style) && (! -d $PREFIX/share/termux-style) ]]; then
+		if [[ (! -L $PREFIX/bin/tspp) && (! -d $PREFIX/share/tspp) ]]; then
 			{ echo; echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Uninstalled Successfully."; echo; }
 			{ reset_color; exit 0; }
 		else
 			{ echo "    ${BLUE}[${RED}!${BLUE}] ${RED}Error Occured."; echo; reset_color; exit 1; }
 		fi
 	else
-		{ echo; echo "    ${BLUE}[${RED}!${BLUE}] ${MAGENTA}termux-style ${GREEN}is not installed."; echo; }
+		{ echo; echo "    ${BLUE}[${RED}!${BLUE}] ${MAGENTA}termux-stylepp ${GREEN}is not installed."; echo; }
 		{ reset_color; exit 0; }
 	fi
 }
 
-uninstall_tstyle
+uninstall_tspp

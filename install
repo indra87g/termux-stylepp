@@ -2,12 +2,8 @@
 
 ## https://github.com/adi1090x/termux-style
 
-## ANSI Colors (FG & BG)
-RED="$(printf '\033[31m')"  GREEN="$(printf '\033[32m')"  ORANGE="$(printf '\033[33m')"  BLUE="$(printf '\033[34m')"
-MAGENTA="$(printf '\033[35m')"  CYAN="$(printf '\033[36m')"  WHITE="$(printf '\033[37m')" BLACK="$(printf '\033[30m')"
-REDBG="$(printf '\033[41m')"  GREENBG="$(printf '\033[42m')"  ORANGEBG="$(printf '\033[43m')"  BLUEBG="$(printf '\033[44m')"
-MAGENTABG="$(printf '\033[45m')"  CYANBG="$(printf '\033[46m')"  WHITEBG="$(printf '\033[47m')" BLACKBG="$(printf '\033[40m')"
-DEFAULT_FG="$(printf '\033[39m')"  DEFAULT_BG="$(printf '\033[49m')"
+source ./tspp.config
+
 
 ## Directories
 PREFIX='/data/data/com.termux/files/usr'
@@ -49,18 +45,18 @@ prerequisite() {
 	if [[ (-f $PREFIX/bin/wget) && (-f $PREFIX/bin/tput) ]]; then
 		{ echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Dependencies are already Installed!"; }
 	else
-		{ pkg update -y; pkg install -y wget ncurses-utils; }
+		{ pkg update -y; pkg install -y git wget ncurses-utils; }
 		(type -p wget tput &> /dev/null) && { echo; echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Dependencies are succesfully installed!"; } || { echo; echo "    ${BLUE}[${RED}!${BLUE}] ${RED}Error Occured, failed to install dependencies."; echo; reset_color; exit 1; }
 	fi
 }
 
 ## Install termux-style
-install_tstyle () {
-	echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Installing termux-style..."
+install_tspp () {
+	echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Installing termux-stylepp..."
 	# Delete old files
-	if [[ (-L $PREFIX/bin/termux-style) && (-d $PREFIX/share/termux-style) ]]; then
+	if [[ (-L $PREFIX/bin/tspp) && (-d $PREFIX/share/tspp) ]]; then
 		echo "    ${BLUE}[${RED}*${BLUE}] ${RED}Deleting files from previous installation..."${BLUE}
-		{ rm -r $PREFIX/bin/termux-style $PREFIX/share/termux-style; echo; }
+		{ rm -r $PREFIX/bin/tspp $PREFIX/share/tspp; echo; }
 	fi
 	# termux config dir
 	if [[ ! -d $TERMUX_DIR ]]; then
@@ -70,13 +66,13 @@ install_tstyle () {
 	fi
 	# Coping files
 	{ echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Coping files in ${GREEN}$PREFIX/share ${ORANGE}directory..."${BLUE}; }
-	{ mkdir $PREFIX/share/termux-style; cp -r $DIR/colors $PREFIX/share/termux-style; cp -r $DIR/fonts $PREFIX/share/termux-style; cp -r $DIR/tstyle $PREFIX/share/termux-style; }
-	{ chmod +x $PREFIX/share/termux-style/tstyle; ln -s $PREFIX/share/termux-style/tstyle $PREFIX/bin/termux-style; }
+	{ mkdir $PREFIX/share/tspp; cp -r $DIR/colors $PREFIX/share/tspp; cp -r $DIR/fonts $PREFIX/share/tspp; cp -r $DIR/tspp $PREFIX/share/tspp; cp -r $DIR/config $PREFIX/share/tspp; }
+	{ chmod +x $PREFIX/share/tspp/tspp; ln -s $PREFIX/share/tspp/tspp $PREFIX/bin/tspp; }
 
 	# Verify files 
-	if [[ (-L $PREFIX/bin/termux-style) && (-d $PREFIX/share/termux-style) ]]; then
+	if [[ (-L $PREFIX/bin/tspp) && (-d $PREFIX/share/tspp) ]]; then
 		{ echo; echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Successfully Installed."; }
-		{ echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Now You Can Run This Program By Just typing ${MAGENTA}termux-style${GREEN}."; echo; }
+		{ echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Now You Can Run This Program By Just typing ${MAGENTA}tspp${GREEN}."; echo; }
 		{ reset_color; exit 0; }
 	else
 		{ echo "    ${BLUE}[${RED}!${BLUE}] ${RED}Error Occured."; echo; reset_color; exit 1; }
@@ -88,16 +84,16 @@ main () {
 	banner
 	prerequisite
 	# Check for previous installation
-	if [[ (-L $PREFIX/bin/termux-style) && (-d $PREFIX/share/termux-style) ]]; then
-		{ echo; echo "    ${BLUE}[${RED}!${BLUE}] ${MAGENTA}termux-style ${GREEN}is already installed."; }
+	if [[ (-L $PREFIX/bin/tspp) && (-d $PREFIX/share/tspp) ]]; then
+		{ echo; echo "    ${BLUE}[${RED}!${BLUE}] ${MAGENTA}termux-stylepp ${GREEN}is already installed."; }
 		{ read -p "    ${BLUE}[${RED}?${BLUE}] ${ORANGE}Do you wanna re-install it? (y/n): ${GREEN}"; echo; }
 		if [[ "$REPLY" =~ ^[y/Y]$ ]]; then
-			install_tstyle
+			install_tspp
 		else
 			{ reset_color; exit; }
 		fi
 	else
-		{ echo; install_tstyle; }
+		{ echo; install_tspp; }
 	fi
 }
 
