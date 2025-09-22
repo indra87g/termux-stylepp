@@ -45,10 +45,10 @@ chmod +x install
 
 ### Run
 
-Run `termux-style` & select the right option -
+Run `tspp` & select the right option -
 
 ```bash
-termux-style # it will changed to 'txs' soon
+tspp
 ```
 
 ### Use Import
