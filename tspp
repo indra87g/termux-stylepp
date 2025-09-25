@@ -2,7 +2,7 @@
 
 ## https://github.com/adi1090x/termux-style
 
-source ./tspp.config
+source ./tspp-config
 
 ## Directories
 PREFIX='/data/data/com.termux/files/usr'

@@ -2,7 +2,7 @@
 
 ## https://github.com/adi1090x/termux-style
 
-source ./tspp.config
+source ./tspp-config
 
 
 ## Directories
@@ -66,8 +66,8 @@ install_tspp () {
 	fi
 	# Coping files
 	{ echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Coping files in ${GREEN}$PREFIX/share ${ORANGE}directory..."${BLUE}; }
-	{ mkdir $PREFIX/share/tspp; cp -r $DIR/colors $PREFIX/share/tspp; cp -r $DIR/fonts $PREFIX/share/tspp; cp -r $DIR/tspp $PREFIX/share/tspp; cp -r $DIR/config $PREFIX/share/tspp; }
-	{ chmod +x $PREFIX/share/tspp/tspp; ln -s $PREFIX/share/tspp/tspp $PREFIX/bin/tspp; }
+	{ mkdir $PREFIX/share/tspp; cp -r $DIR/colors $PREFIX/share/tspp; cp -r $DIR/fonts $PREFIX/share/tspp; cp -r $DIR/tspp $PREFIX/share/tspp; cp -r $DIR/tspp-config $PREFIX/share/tspp; }
+	{ chmod +x $PREFIX/share/tspp/tspp; ln -s $PREFIX/share/tspp/tspp $PREFIX/bin/tspp; ln -s $PREFIX/share/tspp/tspp-config $PREFIX/bin/tspp-config; }
 
 	# Verify files 
 	if [[ (-L $PREFIX/bin/tspp) && (-d $PREFIX/share/tspp) ]]; then
