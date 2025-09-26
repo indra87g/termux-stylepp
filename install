@@ -4,12 +4,6 @@
 
 source ./tspp-config
 
-
-## Directories
-PREFIX='/data/data/com.termux/files/usr'
-TERMUX_DIR="$HOME/.termux"
-DIR="$(pwd)"
-
 ## Banner
 banner () {
     clear
@@ -42,7 +36,7 @@ reset_color() {
 ## Prerequisite
 prerequisite() {
 	{ echo; echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Installing Dependencies..."${CYAN}; echo; }
-	if [[ (-f $PREFIX/bin/wget) && (-f $PREFIX/bin/tput) ]]; then
+	if [[ (-f $USR/bin/wget) && (-f $USR/bin/tput) ]]; then
 		{ echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Dependencies are already Installed!"; }
 	else
 		{ pkg update -y; pkg install -y git wget ncurses-utils; }
@@ -54,23 +48,23 @@ prerequisite() {
 install_tspp () {
 	echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Installing termux-stylepp..."
 	# Delete old files
-	if [[ (-L $PREFIX/bin/tspp) && (-d $PREFIX/share/tspp) ]]; then
-		echo "    ${BLUE}[${RED}*${BLUE}] ${RED}Deleting files from previous installation..."${BLUE}
-		{ rm -r $PREFIX/bin/tspp $PREFIX/share/tspp; echo; }
+	if [[ (-L $USR/bin/tspp) && (-d $USR/share/tspp) ]]; then
+		echo "    ${BLUE}[${RED}*${BLUE}] ${RED}Deleting files from previous installation...${BLUE}"
+		{ rm -r $USR/bin/tspp $USR/share/tspp; echo; }
 	fi
 	# termux config dir
-	if [[ ! -d $TERMUX_DIR ]]; then
-		mkdir $TERMUX_DIR
+	if [[ ! -d $TERMUX ]]; then
+		mkdir $TERMUX
 	else
-		cp -r $TERMUX_DIR{,.backup}
+		cp -r $TERMUX{,.backup}
 	fi
 	# Coping files
 	{ echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Coping files in ${GREEN}$PREFIX/share ${ORANGE}directory..."${BLUE}; }
-	{ mkdir $PREFIX/share/tspp; cp -r $DIR/colors $PREFIX/share/tspp; cp -r $DIR/fonts $PREFIX/share/tspp; cp -r $DIR/tspp $PREFIX/share/tspp; cp -r $DIR/tspp-config $PREFIX/share/tspp; }
-	{ chmod +x $PREFIX/share/tspp/tspp; ln -s $PREFIX/share/tspp/tspp $PREFIX/bin/tspp; ln -s $PREFIX/share/tspp/tspp-config $PREFIX/bin/tspp-config; }
+	{ mkdir $USR/share/tspp; cp -r $DIR/colors $USR/share/tspp; cp -r $DIR/fonts $USR/share/tspp; cp -r $DIR/tspp $USR/share/tspp; cp -r $DIR/tspp-config $USR/share/tspp; }
+	{ chmod +x $USR/share/tspp/tspp; ln -s $USR/share/tspp/tspp $USR/bin/tspp; ln -s $USR/share/tspp/tspp-config $USR/bin/tspp-config; }
 
 	# Verify files 
-	if [[ (-L $PREFIX/bin/tspp) && (-d $PREFIX/share/tspp) ]]; then
+	if [[ (-L $USR/bin/tspp) && (-d $USR/share/tspp) ]]; then
 		{ echo; echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Successfully Installed."; }
 		{ echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Now You Can Run This Program By Just typing ${MAGENTA}tspp${GREEN}."; echo; }
 		{ reset_color; exit 0; }
@@ -84,7 +78,7 @@ main () {
 	banner
 	prerequisite
 	# Check for previous installation
-	if [[ (-L $PREFIX/bin/tspp) && (-d $PREFIX/share/tspp) ]]; then
+	if [[ (-L $USR/bin/tspp) && (-d $USR/share/tspp) ]]; then
 		{ echo; echo "    ${BLUE}[${RED}!${BLUE}] ${MAGENTA}termux-stylepp ${GREEN}is already installed."; }
 		{ read -p "    ${BLUE}[${RED}?${BLUE}] ${ORANGE}Do you wanna re-install it? (y/n): ${GREEN}"; echo; }
 		if [[ "$REPLY" =~ ^[y/Y]$ ]]; then

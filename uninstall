@@ -4,9 +4,6 @@
 
 source ./tspp-config
 
-## Directories
-PREFIX='/data/data/com.termux/files/usr'
-
 ## Banner
 banner () {
     clear
@@ -39,12 +36,12 @@ reset_color() {
 ## Check for previous installation
 uninstall_tspp () {
 	banner
-	if [[ (-L $PREFIX/bin/tspp) && (-d $PREFIX/share/tspp) ]]; then
+	if [[ (-L $USR/bin/tspp) && (-d $USR/share/tspp) ]]; then
 		{ echo; echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Uninstalling termux-style..."; echo; }
 		{ echo "    ${BLUE}[${RED}*${BLUE}] ${RED}Removing files from $PREFIX/share dir."${BLUE}; }
-		{ rm -r $PREFIX/share/tspp $PREFIX/bin/tspp; }
+		{ rm -r $USR/share/tspp $USR/bin/tspp $USR/share/tspp-config $USR/bin/tspp-config; }
 		# Verify files
-		if [[ (! -L $PREFIX/bin/tspp) && (! -d $PREFIX/share/tspp) ]]; then
+		if [[ (! -L $USR/bin/tspp) && (! -d $USR/share/tspp) ]]; then
 			{ echo; echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Uninstalled Successfully."; echo; }
 			{ reset_color; exit 0; }
 		else

@@ -4,19 +4,12 @@
 
 source ./tspp-config
 
-## Directories
-PREFIX='/data/data/com.termux/files/usr'
-TERMUX_DIR="$HOME/.termux"
-COLORS_DIR="$PREFIX/share/tspp/colors"
-FONTS_DIR="$PREFIX/share/tspp/fonts"
-PROMPTS_DIR
-
 ## Banner
 banner () {
     clear
     echo "
     ${BLUE}TERMUX STYLE${RED}++
-    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Originally By- Aditya Shakya ${RED}//${ORANGE} adi1090x"
+    ${BLUE}[${RED}*${BLUE}] ${ORANGE}A fork of ${ORANGE}adi1090x's Termux Style by indra87g"
 }
 
 ## Script Termination
@@ -82,12 +75,12 @@ apply_colors () {
     if [[ (-n "$answer") && ("$answer" -le $total_colors) ]]; then
         scheme=${color_schemes[(( answer - 1 ))]}
         echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Applying Color Scheme..."
-        cp $COLORS_DIR/$scheme $TERMUX_DIR/colors.properties
-        if [[ ! -f "$TERMUX_DIR/.current_color" ]]; then
-			touch "$TERMUX_DIR/.current_color"
-			echo "$scheme" > "$TERMUX_DIR/.current_color"
+        cp $COLORS_DIR/$scheme $TERMUX/colors.properties
+        if [[ ! -f "$TERMUX/.current_color" ]]; then
+			touch "$TERMUX/.current_color"
+			echo "$scheme" > "$TERMUX/.current_color"
         else
-			echo "$scheme" > "$TERMUX_DIR/.current_color"
+			echo "$scheme" > "$TERMUX/.current_color"
         fi
         { reload_settings; reset_color; exit; }
     else
@@ -116,12 +109,12 @@ apply_fonts () {
     if [[ (-n "$answer") && ("$answer" -le $total_fonts) ]]; then
         font_ttf=${fonts_list[(( answer - 1 ))]}
         echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Applying Fonts..."
-        cp $FONTS_DIR/$font_ttf $TERMUX_DIR/font.ttf
+        cp $FONTS_DIR/$font_ttf $TERMUX/font.ttf
         if [[ ! -f "$TERMUX_DIR/.current_font" ]]; then
 			touch "$TERMUX_DIR/.current_font"
-			echo "$font_ttf" > "$TERMUX_DIR/.current_font"
+			echo "$font_ttf" > "$TERMUX/.current_font"
         else
-			echo "$font_ttf" > "$TERMUX_DIR/.current_font"
+			echo "$font_ttf" > "$TERMUX/.current_font"
         fi
         { reload_settings; reset_color; exit; }
     else
@@ -149,7 +142,7 @@ apply_ps1 () {
     if [[ (-n "$answer") && ("$answer" -le ${#prompts_list[@]}) ]]; then
         prompt_file=${prompts_list[(( answer - 1 ))]}
         echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Applying Prompt..."
-        cp $PROMPTS_DIR/$prompt_file $TERMUX_DIR/.current_ps1
+        cp $PROMPTS_DIR/$prompt_file $TERMUX/.current_ps1
 
         # Detect active shell
         shell_name=$(basename "$SHELL")
@@ -182,12 +175,12 @@ apply_ps1 () {
 random_style () {
     echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Setting Random Style..."
     random_scheme=$(ls $COLORS_DIR | shuf -n 1)
-    { cp $COLORS_DIR/$random_scheme $TERMUX_DIR/colors.properties; }
+    { cp $COLORS_DIR/$random_scheme $TERMUX/colors.properties; }
     if [[ ! -f "$TERMUX_DIR/.current_color" ]]; then
 		touch "$TERMUX_DIR/.current_color"
-		echo "$random_scheme" > "$TERMUX_DIR/.current_color"
+		echo "$random_scheme" > "$TERMUX/.current_color"
     else
-		echo "$random_scheme" > "$TERMUX_DIR/.current_color"
+		echo "$random_scheme" > "$TERMUX/.current_color"
     fi
     { reload_settings; reset_color; exit; }
 }
@@ -198,17 +191,17 @@ import_files () {
     ${BLUE}[${RED}I${BLUE}] ${ORANGE}Internet File (Enter File URL)"
     { echo; read -p ${BLUE}"    [${RED}Select Option${BLUE}]: ${GREEN}" option; echo; }
 
-    temp_file=$(mktemp $PREFIX/tmp/termux_XXXXXXXXXX.properties)
+    temp_file=$(mktemp $USR/tmp/termux_XXXXXXXXXX.properties)
 
     if [[ "$option" =~ ^[l/L/i/I]$ ]]; then
         if [[ "$option" =~ ^[l/L]$ ]]; then
             { read -p ${BLUE}"    [${RED}Enter/Paste Path To Color-scheme${BLUE}]: ${GREEN}" file_path; echo; }
-            cp $file_path $TERMUX_DIR/colors.properties
+            cp $file_path $TERMUX/colors.properties
             { reload_settings; reset_color; exit; }
         elif [[ "$option" =~ ^[i/I]$ ]]; then
             { read -p ${BLUE}"    [${RED}Enter Color-scheme URL${BLUE}]: ${GREEN}" file_link; echo; }
-            wget -o $PREFIX/tmp/log -O $temp_file $file_link
-            cp $temp_file $TERMUX_DIR/colors.properties
+            wget -o $USR/tmp/log -O $temp_file $file_link
+            cp $temp_file $TERMUX/colors.properties
             { reload_settings; reset_color; exit; }
         fi
     else
@@ -219,30 +212,14 @@ import_files () {
 
 ## About program
 about_program () {
-    echo -n ${BLUE}"    ┌───────────────────────────────────────────────────────────────┐
-    │  			     ┏━┓┏┓ ┏━┓╻ ╻╺┳╸			    │
-    │  			     ┣━┫┣┻┓┃ ┃┃ ┃ ┃ 			    │
-    │  			     ╹ ╹┗━┛┗━┛┗━┛ ╹ 			    │
-    │───────────────────────────────────────────────────────────────│
-    │                                                               │
-    │ >>  'termux-style' is a simple program that provides color    │
-    │     schemes and powerline-ready fonts to customize the        │
-    │     appearance of the termux terminal emulator.               │
-    │                                                               │
-    │                                                               │
-    │ >>  Author   :  Aditya Shakya                                 │
-    │     Twitter  :  https://twitter.com/adi1090x                  │
-    │     Github   :  https://github.com/adi1090x                   │
-    │     Reddit   :  https://www.reddit.com/user/adi1090x          │
-    │                                                               │
-    └───────────────────────────────────────────────────────────────┘"
+    echo -n ${BLUE}"Hello World!"
     { echo; read -p "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Press ${GREENBG}${BLACK} Enter ${DEFAULT_BG}${GREEN} To Return To Main Menu."; }
 }
 
 ## Main menu
 until [[ "$REPLY" =~ ^[q/Q]$ ]]; do
-	active_color=`cat $TERMUX_DIR/.current_color`
-	active_font=`cat $TERMUX_DIR/.current_font`
+	active_color=`cat $TERMUX/.current_color`
+	active_font=`cat $TERMUX/.current_font`
     banner
     echo "
     ${BLUE}[${RED}C${BLUE}] ${GREEN}Colors ($total_colors) (${CYAN}${active_color%.*}${GREEN})
