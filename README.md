@@ -31,7 +31,7 @@ Follow the steps below -
 cd $HOME
 
 # Clone this repository (use `gh repo clone adi1090x/termux-style` if you want to use the GitHub CLI)- 
-git clone https://github.com/indra87/termux-stylepp
+git clone https://github.com/indra87g/termux-stylepp
 
 # Change to termux-style dir -
 cd termux-stylepp
@@ -45,10 +45,10 @@ chmod +x install
 
 ### Run
 
-Run `termux-style` & select the right option -
+Run `tspp` & select the right option -
 
 ```bash
-termux-style # it will changed to 'txs' soon
+tspp
 ```
 
 ### Use Import
