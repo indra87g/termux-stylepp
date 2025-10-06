@@ -42,6 +42,9 @@ prerequisite() {
 		{ pkg update -y; pkg install -y git wget ncurses-utils; }
 		(type -p wget tput &> /dev/null) && { echo; echo "    ${BLUE}[${RED}*${BLUE}] ${GREEN}Dependencies are succesfully installed!"; } || { echo; echo "    ${BLUE}[${RED}!${BLUE}] ${RED}Error Occured, failed to install dependencies."; echo; reset_color; exit 1; }
 	fi
+        # Work In Progress
+        # wget https://github.com/indra87g/termux-stylepp/releases/download/v1/colors.zip
+        # unzip çolors.zip
 }
 
 ## Install termux-style
