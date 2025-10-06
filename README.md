@@ -24,7 +24,9 @@ A fork of original [termux-style](https://github.com/adi1090x/termux-style)
 
 ### How to install
 
-Follow the steps below - 
+Follow the steps below - There are additional steps you need to follow.
+
+Please be patient, in the next version I will make the Style Pack download process automatic. 
 
 ```bash
 # Go to home dir - 
@@ -35,6 +37,12 @@ git clone https://github.com/indra87g/termux-stylepp
 
 # Change to termux-style dir -
 cd termux-stylepp
+
+# Download style pack (colors + fonts)
+wget https://github.com/indra87g/termux-stylepp/releases/download/v1/colors.zip
+wget https://github.com/indra87g/termux-stylepp/releases/download/v1/fonts.zip
+unzip colors.zip
+unzip fonts.zip
 
 # To install it, run -
 chmod +x install
